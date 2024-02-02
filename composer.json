@@ -5,17 +5,19 @@
     "keywords": ["flight api","flight search"],
     "require": {
         "guzzlehttp/guzzle": "^7.8",
-        "symfony/var-dumper": "^7.0",
-        "symfony/http-foundation": "^7.0"
+        "symfony/http-foundation": "^7.0",
+        "ramsey/uuid": "^4.7"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.5"
+        "phpunit/phpunit": "^10.5",
+        "symfony/var-dumper": "^7.0"
     },
     "license": "GPL",
     "autoload": {
         "psr-4": {
             "Bl\\QcFlight\\": "src/"
-        }
+        },
+        "files": ["src/Helpers/FlightHelper.php"]
     },
     "authors": [
         {
@@ -27,5 +29,5 @@
             "email": "Btissamtoujni@gmail.com"
         }
     ],
-    "minimum-stability": "stable"
+    "minimum-stability": "dev"
 }
