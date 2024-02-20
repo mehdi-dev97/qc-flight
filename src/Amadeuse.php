@@ -48,12 +48,14 @@ class Amadeuse
     /**
      * Initialize amadeuse token in session
      *
-     * @return void
+     * @return bool
      */
-    public function init():void
+    public function init():bool
     {
         $session = new Session();
-        $session->start();
+        if (! $session->isStarted()) {
+            $session->start();
+        }
         if (!$session->has('amadeuse_token')) {
             $client = new Client(['verify' => false]);
             try {
@@ -70,8 +72,9 @@ class Amadeuse
                 $uuid = Uuid::uuid4()
                              ->toString();
                 $session->set('amadeuse_uuid', $uuid);
+                return true;
             } catch(Exception $e) {
-                throw new Exception("You have error in access token: " . $e->getMessage());
+                throw new Exception("You have error in client_credentials or client_secret\nError details: " . $e->getMessage());
             }
         }
     }
@@ -81,14 +84,14 @@ class Amadeuse
      *
      * @return string|null
      */
-    public static function getToken():string
+    public static function getToken():string|null
     {
         $session = new Session();
         return $session->get('amadeuse_token') ?? null;
     }
 
     /**
-     * Get amadeuse uuid from session
+     * Get amadeuse uuid from session for testing case
      *
      * @return string|null
      */
