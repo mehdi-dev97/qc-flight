@@ -12,7 +12,7 @@ class FlightOfferTest extends TestCase
      */
     public function testApiParamsIscorrectlyFormated():void
     {
-        $flightOffer = new FlightOffer(['CMN', 'CDG'], ['CDG'], ['2024-02-20', '2024-02-24', '2024-02-24'], 'USD', 1);
+        $flightOffer = new FlightOffer(['CMN', 'CDG', 'JFK'], ['CDG', 'JFK', 'CMN'], ['2024-02-20', '2024-02-24', '2024-02-24'], 'USD', 1);
 
         $params = $flightOffer->apiParams();
 
