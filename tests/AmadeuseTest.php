@@ -12,7 +12,7 @@ class AmadeuseTest extends TestCase
      */
     public function testIfAmadeuseFlightTokenIsCreated():void
     {
-        $amadeuse = new Amadeuse('', '');
+        $amadeuse = new Amadeuse('AMADEUSE_ID', 'AMADEUSE_SECRET_KEY');
 
         $initializer = $amadeuse->init();
 
