@@ -1,7 +1,10 @@
 # QC Flight - Take control of your flight data
 
 ## Description :
+
 Tired of sifting through endless flight websites and struggling with convoluted interfaces? This Python module empowers developers to easily interact with the Amadeus Flight API, unlocking a world of possibilities for travel applications and services.
+
+[Amadeuse Developer Documentation](https://developers.amadeus.com)
 
 ## INSTALLATION:
 
