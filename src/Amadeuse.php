@@ -28,7 +28,7 @@ class Amadeuse
      *
      * @var bool
      */
-    protected bool $test;
+    public bool $test = true;
 
     /**
      * our object constructor
@@ -53,7 +53,9 @@ class Amadeuse
     public function init():bool
     {
         $session = new Session();
+        
         if (! $session->isStarted()) {
+            $session->clear();
             $session->start();
         }
         if (!$session->has('amadeuse_token')) {
@@ -100,4 +102,5 @@ class Amadeuse
         $session = new Session();
         return $session->get('amadeuse_uuid') ?? null;
     }
+
 }
