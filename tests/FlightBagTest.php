@@ -12,7 +12,7 @@ class FlightBagTest extends TestCase
     public function testBagRequest()
     {    
 
-        $amadeuse = new Amadeuse('BeVSwa8azGL6T9ZHwAK5Tu21JQ5PrXLp', 'l7P8zABLkmsFT9d7');
+        $amadeuse = new Amadeuse('AMADEUSE_ID', 'AMADEUSE_SECRET_KEY');
 
         $amadeuse->init();
 

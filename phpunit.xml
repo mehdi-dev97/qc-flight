@@ -8,6 +8,7 @@
             <directory suffix=".php">./tests/</directory>
             <exclude>./tests/AmadeuseTest.php</exclude>
             <exclude>./tests/FlightOfferTest.php</exclude>
+            <exclude>./tests/FlightBags.php</exclude>
         </testsuite>
     </testsuites>
 </phpunit>
