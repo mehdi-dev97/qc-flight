@@ -237,6 +237,56 @@ FlightOffer::set($id);
 var_dump(FlightOffer::get());
 ```
 
+## Flight offer price
+
+Provides initial flight recommendations with basic fare details, including included check-in baggage allowance.
+
+Shows prices for first additional checked bag (if applicable).
+
+Flight Offers Price provides accurate, real-time pricing for your chosen flight with extra baggage.
+
+```php
+// Obtain all the quantities offered by the flight selected by the customer or user.
+$flightBag = new FlightBags();
+
+foreach ($flightBag->quantities() as $bag) {
+  echo $bag->qt; // quantity
+  echo $bag->price; // price of quantity offer
+  echo $bag->travelerIds; // travalers included in bags
+}
+
+```
+
+To save the quantities selected by passengers, you need to use the method ```$flightBags->save($travelersQt)```.
+
+The method takes an array argument of type key value as parameter, the key must be the passenger id and the value the quantity selected.
+
+```php
+$flightBag = new FlightBags();
+
+$travelersQt = [
+  '1' => 1,
+  '2' => 3
+];
+
+$flightBag->save($travelersQt);
+```
+
+If all goes well, the flight offer will be modified to be compatible with the baggage quantities selected in the price array. You'll see that a new element in the price table has been added, as well as the quantity added to travelerPricings.
+
+Example
+
+```php
+  [
+    "segmentId" => "8"
+    "cabin" => "ECONOMY"
+    "fareBasis" => "TL0RAF0A"
+    "class" => "T"
+    "includedCheckedBags" => array [
+      "quantity" => 2
+    ]
+  ]
+```
 
 ## Contributors :
 

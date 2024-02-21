@@ -295,5 +295,4 @@ class FlightOffer extends Amadeuse
         return $session->get('flight_offer') ?? null;
     }
     
-    
 }
