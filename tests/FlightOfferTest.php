@@ -1,7 +1,6 @@
 <?php
 
-use Bl\QcFlight\Amadeuse;
-use Bl\QcFlight\FlightOffer;
+use Bl\QcFlight\{Amadeuse, FlightOffer};
 use PHPUnit\Framework\TestCase;
 
 class FlightOfferTest extends TestCase
@@ -13,7 +12,7 @@ class FlightOfferTest extends TestCase
      */
     public function testApiParamsIscorrectlyFormated():void
     {
-        $flightOffer = new FlightOffer('CMN', 'CDG', ['2024-01-20', '2024-01-24'], 'USD', 'ECONOMY',1);
+        $flightOffer = new FlightOffer('CMN', 'CDG', ['2024-01-23', '2024-01-29'], 'USD', 'ECONOMY',1);
 
         $params = $flightOffer->apiParams();
 
@@ -28,7 +27,7 @@ class FlightOfferTest extends TestCase
      */
     public function testApiGetFlightOffer():void
     {
-        $amadeuse = new Amadeuse('AMADEUSE_ID', 'AMADEUSE_SECRET_KEY');
+        $amadeuse = new Amadeuse('BeVSwa8azGL6T9ZHwAK5Tu21JQ5PrXLp', 'l7P8zABLkmsFT9d7');
 
         $amadeuse->init();
 
