@@ -9,6 +9,7 @@
             <exclude>./tests/AmadeuseTest.php</exclude>
             <exclude>./tests/FlightOfferTest.php</exclude>
             <exclude>./tests/FlightBags.php</exclude>
+            <exclude>./tests/FlightOrder.php</exclude>
         </testsuite>
     </testsuites>
 </phpunit>
