@@ -2,7 +2,7 @@
 
 ## Description :
 
-Tired of sifting through endless flight websites and struggling with convoluted interfaces? This Python module empowers developers to easily interact with the Amadeus Flight API, unlocking a world of possibilities for travel applications and services.
+Tired of sifting through endless flight websites and struggling with convoluted interfaces? This php package empowers developers to easily interact with the Amadeus Flight API, unlocking a world of possibilities for travel applications and services.
 
 [Amadeuse Developer Documentation](https://developers.amadeus.com)
 
@@ -74,7 +74,7 @@ echo $amadeuse::getToken();
 echo $amadeuse::getUUID();
 ```
 
-Example
+Example of data
 
 ``` php
 // Bearer token returned by getToken.
@@ -118,7 +118,7 @@ $arrayData = $offers->fetchArray();
 // Get data represented in object format.
 $objectData = $offers->fetchObject();
 ```
-Example
+Example of return flight data
 
 ``` php
 // fetched data by fetchObject
@@ -288,8 +288,120 @@ Example
   ]
 ```
 
+## Flight Orders
+
+For this step you need to create an order before do ticketing, and to do this you need to use ```FlightOrder::class```.
+
+```php
+/**
+ * to create flight order.
+ *
+ * @param array $travelers
+ * @param array $contacts
+ */
+
+// Note : $travelers and $contacts is required only for set order after you can use FlightOrder in ticketing or get order.
+
+// First argument contain travelers information you need to create a new order.
+$travelers = [
+  0 => array:6 [▼
+    "dateOfBirth" => "1958-02-06"
+    "name" => array:2 [▼
+      "firstName" => "Jone"
+      "lastName" => "Doe"
+    ]
+    "gender" => "MALE",
+    "documents" => array:10 [▼
+      "documentType" => "passport"
+      "birthPlace" => "FR"
+      "issuanceLocation" => "FR"
+      "issuanceDate" => "2019-02-02"
+      "number" => "DRF3221"
+      "expiryDate" => "2027-02-20"
+      "issuanceCountry" => "FR"
+      "validityCountry" => "FR"
+      "nationality" => "FR"
+      "holder" => true
+    ],
+  ]
+];
+
+// contacts argument contains the person responsible for the flight order or payment.
+$contacts = [
+  "addresseeName" => array:2 [▼
+    "firstName" => "Jone"
+    "lastName" => "Jone"
+  ]
+  "companyName" => "XXXX"
+  "purpose" => "STANDARD"
+  "phones" => array:1 [▼
+    0 => array:3 [
+      "deviceType" => "MOBILE"
+      "countryCallingCode" => "33"
+      "number" => "0929200032"
+    ]
+  ]
+  "emailAddress" => "xxxxx@gamail.com"
+  "address" => array:4 [▼
+    "lines" => array:1 [▼
+      0 => "xxxxxxxx"
+    ]
+    "postalCode" => "3232"
+    "cityName" => "Marrakech"
+    "countryCode" => "MA"
+  ]
+];
+
+$order = new FlightOrder($travelers, $contacts);
+
+// use set method to send request in amadeuse api to create order.
+$order->set();
+```
+
+Example of order id
+
+```php
+"eJzTd9sfsdew8LYsdsdss9Ak0%3D"
+```
+
+Order id use it in ticketing request to confirm the flight.
+
+```php
+$order->ticketing();
+```
+ticketing method return array reponse contain all info about flight order.
+
+```php
+"data" => array:10 [▼
+      "type" => "flight-order"
+      "id" => "eJzTd9sfsdew8LYsdsdss9Ak0%3D"
+      "queuingOfficeId" => "PARTQ2692"
+      "associatedRecords" => array:2 [▶]
+      "flightOffers" => array:1 [▶]
+      "travelers" => []
+      "contacts" => [...]
+      "tickets" => array:1 [▼
+        0 => array:5 [▼
+          "documentType" => "ETICKET"
+          "documentNumber" => "390-9238463936"
+          "documentStatus" => "ISSUED"
+          "travelerId" => "1"
+        ]
+      ]
+    ]
+```
+
+If you need to get informations about order you can use get method to show all data.
+
+```php
+$order = new FlightOrder();
+
+$order->reference = "DSE673";
+
+$order->get();
+```
 ## Contributors :
 
-Mehdi Ait Mouh <mehdi.aitmouh.dev@gmail.com> (Create logic of software)
+Mehdi Ait Mouh <mehdi.aitmouh.dev@gmail.com> (software engineer)
 
-Ibtissam Toujni <Btissamtoujni@gmail.com> (Software tester)
+Ibtissam Toujni <Btissamtoujni@gmail.com> (software engineer and tester)
